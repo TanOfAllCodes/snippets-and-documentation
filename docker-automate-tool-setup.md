@@ -6,6 +6,9 @@ For a generic Automation Tool, it's better to have a singular place which multip
 This removes the need for developers to constantly keep their CLI updated. 
 Hence the approach with Jenkins is used. 
 
+##### This script can easily be converted to a bash CLI tool for developers. 
+##### One may also add functionality for AWS and other storage buckets. In this case, choice based scripts can also be written.
+
 ### Assumptions:
 
 1. There is a Machine, called Base Machine (BM) with Jenkins, Docker and GCloud / GSutils installed on it.  
@@ -57,3 +60,11 @@ In some cases, gsutil may not be recognized as a command in the Jenkins shell, i
 ```
 
 An equivalent can be created if Jenkins exists on Linux Machine. 
+
+```
+echo "Enumerating Usernames, Username Range=$WPSCAN_UN_RANGE  API-Token=$WP_API_TOKEN"   
+docker run -t --rm wpscanteam/wpscan --update --url $WPSCAN_URL --random-user-agent $WP_API_TOKEN --ignore-main-redirect --enumerate u$WPSCAN_UN_RANGE > $OUTPUT_FILE
+gsutil cp $OUTPUT_FILE gs://$GCP_BUCKET_NAME
+```
+
+
