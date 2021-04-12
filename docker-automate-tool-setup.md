@@ -18,9 +18,9 @@ Hence the approach with Jenkins is used.
 
 #### In this project, I have access to only a Windows Machine and GCP (Instead of AWS). 
 
-#### First, Create a jenkins freestyle job. (No extra plugins required)
+### First, gain access to Jenkins @ BM, create a jenkins freestyle job. (No extra plugins required)
 
-### ENVIORNMENT VARIABLES TO BE CREATED AS PARAMETERS IN JENKINS
+#### ENVIORNMENT VARIABLES TO BE CREATED AS PARAMETERS IN JENKINS
 
 ##### OUTPUT_FILE
 This is the file that will be uploaded to GCP Storage Bucket.
