@@ -20,18 +20,27 @@ Hence the approach with Jenkins is used.
 
 ##### OUTPUT_FILE
 This is the file that will be uploaded to GCP Storage Bucket.
+Example: C:\Users\tanis\Documents\pagar\file.txt
+###### Specifiy the full path.
 
 ##### GCP_BUCKET_NAME
 Name of the Storage Bucket.
+Example: buckket-o1
+###### Do not include "gs://" 
 
 ##### WPSCAN_URL
 The URL to be Scanned in the Wordpress Database.
+Example: https://www.aykha.in/
+###### Include the Full URL.
 
 ##### WPSCAN_UN_RANGE
 The Range of Usernames to be Scanned.
+Example: 1-25
+###### Enter the format as (Number)-(Number)
 
 ##### WP_API_TOKEN
 Wordpress API token for access.
+###### Get one from https://wpscan.com/api
 
 
 #### Since this project was created on windows, create a build-step with "Execute Windows Batch Commands" in the Jenkins Job, with the following script.
