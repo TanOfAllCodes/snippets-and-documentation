@@ -7,8 +7,12 @@ For a generic Automation Tool, it's better to have a singular place which multip
 This removes the need for developers to constantly keep their CLI updated. 
 Hence the approach with Jenkins is used. 
 
+---
+
 ##### This script can easily be converted to a bash CLI tool for developers. 
 ##### One may also add functionality for AWS and other storage buckets. In this case, choice based scripts can also be written.
+
+---
 
 ### Assumptions:
 
@@ -18,8 +22,9 @@ Hence the approach with Jenkins is used.
 
 #### In this project, I have access to only a Windows Machine and GCP (Instead of AWS). 
 
+---
 ### First, gain access to Jenkins @ BM, create a jenkins freestyle job. (No extra plugins required)
-
+---
 #### ENVIORNMENT VARIABLES TO BE CREATED AS PARAMETERS IN JENKINS
 
 ##### OUTPUT_FILE
@@ -45,7 +50,7 @@ Example: 1-25
 ##### WP_API_TOKEN
 Wordpress API token for access.
 ###### Get one from https://wpscan.com/api
-
+---
 
 #### Since this project was created on windows, create a build-step with "Execute Windows Batch Commands" in the Jenkins Job, with the following script.
 
