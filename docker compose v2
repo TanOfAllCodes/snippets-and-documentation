@@ -1,0 +1,58 @@
+#!/bin/bash
+
+# This script installs Docker Engine, Docker CLI, Containerd, and Docker Compose V2 on Ubuntu/Debian systems.
+
+# Update the apt package index and install required packages
+echo "Step 1: Updating apt package index and installing dependencies..."
+sudo apt-get update
+sudo apt-get install -y \
+    apt-transport-https \
+    ca-certificates \
+    curl \
+    software-properties-common \
+    lsb-release \
+    gnupg
+
+# Add Docker's official GPG key
+echo "Step 2: Adding Docker's official GPG key..."
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
+
+# Set up the stable Docker repository
+echo "Step 3: Setting up Docker repository..."
+echo \
+  "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" \
+  | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+
+# Update the apt package index to include Docker's repository
+echo "Step 4: Updating apt package index again..."
+sudo apt-get update
+
+# Install Docker Engine, CLI, and containerd.io
+echo "Step 5: Installing Docker Engine, Docker CLI, and containerd.io..."
+sudo apt-get install -y docker-ce docker-ce-cli containerd.io
+
+# Verify that Docker is installed successfully
+echo "Step 6: Verifying Docker installation..."
+sudo docker --version
+
+# Create a directory for Docker CLI plugins (needed for Docker Compose V2)
+echo "Step 7: Installing Docker Compose V2 plugin..."
+mkdir -p ~/.docker/cli-plugins/
+
+# Download Docker Compose V2 plugin binary
+curl -SL https://github.com/docker/compose/releases/download/v2.0.1/docker-compose-linux-x86_64 -o ~/.docker/cli-plugins/docker-compose
+
+# Make the plugin executable
+chmod +x ~/.docker/cli-plugins/docker-compose
+
+# Verify that Docker Compose V2 is installed correctly
+echo "Step 8: Verifying Docker Compose V2 installation..."
+docker compose version
+
+# Optional: Add the current user to the Docker group to avoid using sudo
+# This requires you to log out and log back in after running the script
+echo "Step 9: Adding the current user to the Docker group (log out and log back in to apply)..."
+sudo usermod -aG docker $USER
+
+echo "Docker and Docker Compose V2 installation is complete!"
+echo "Remember to log out and log back in for the group changes to take effect."
