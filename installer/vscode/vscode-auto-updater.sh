@@ -95,11 +95,14 @@ done
 if [ -f "$DEB_FILE" ]; then
     echo "Found existing download: $DEB_FILE"
 else
-    # Download the .deb file for the selected version
-    echo "Downloading VS Code $SELECTED_VERSION to $DEB_FILE..."
+    # Construct the version-specific download URL
+    DOWNLOAD_URL="https://update.code.visualstudio.com/$SELECTED_VERSION/linux-deb-x64/stable"
+    echo "Downloading VS Code $SELECTED_VERSION from $DOWNLOAD_URL to $DEB_FILE..."
     curl -L -o "$DEB_FILE" "$DOWNLOAD_URL"
     if [ $? -ne 0 ]; then
-        echo "Download failed!"
+        echo "Download failed! The version $SELECTED_VERSION might not be available."
+        echo "Please verify the version exists or check your internet connection."
+        rm -f "$DEB_FILE"  # Remove any partial download
         exit 1
     else
         echo "Download completed successfully"
