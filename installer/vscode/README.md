@@ -103,16 +103,13 @@ Script completed! VS Code updated to version 1.85.0
 
 ## Limitations
 
-- **Download Source**: Uses `code.visualstudio.com` for `.deb` files, which always provides the latest version. Downgrading to a specific version requires manual `.deb` file sourcing (see below).
+- **Download Source**: Uses `code.visualstudio.com` for `.deb` files, which by default provides the latest version. Downgrading to a specific version requires `.deb` file sourcing (see below).
 - **OS Specificity**: Designed for Ubuntu/Debian (`.deb`). Other systems need URL and installer adjustments.
 - **GitHub API**: Subject to rate limits (60 requests/hour unauthenticated). Heavy use may require a token.
 
 ## Downgrading Note
 
-The script validates requested versions against GitHub releases, but the download URL (`code.visualstudio.com/sha/download`) only provides the latest stable `.deb`. For true downgrading:
-- Maintain a local cache of `.deb` files.
-- Source older versions manually and place them in the script directory.
-- Future enhancement could integrate a third-party archive if available.
+The script fetches version-specific `.deb` files from `[https://update.code.visualstudio.com/$SELECTED_VERSION/linux-deb-x64/stable](https://update.code.visualstudio.com/$SELECTED_VERSION/linux-deb-x64/stable)` based on your selected version, enabling true downgrading to any release validated against GitHub. If a version is unavailable on the server, you may need to source the `.deb` manually and place it in the script directory.
 
 ## Contributing
 
