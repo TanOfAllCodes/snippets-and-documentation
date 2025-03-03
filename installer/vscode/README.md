@@ -109,7 +109,7 @@ Script completed! VS Code updated to version 1.85.0
 
 ## Downgrading Note
 
-The script fetches version-specific `.deb` files from `[https://update.code.visualstudio.com/$SELECTED_VERSION/linux-deb-x64/stable](https://update.code.visualstudio.com/$SELECTED_VERSION/linux-deb-x64/stable)` based on your selected version, enabling true downgrading to any release validated against GitHub. If a version is unavailable on the server, you may need to source the `.deb` manually and place it in the script directory.
+The script fetches version-specific `.deb` files from `https://update.code.visualstudio.com/$SELECTED_VERSION/linux-deb-x64/stable` based on your selected version, enabling true downgrading to any release validated against GitHub. If a version is unavailable on the server, you may need to source the `.deb` manually and place it in the script directory.
 
 ## Contributing
 
